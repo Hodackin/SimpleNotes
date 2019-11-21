@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Update note</h1>
+{% for category, message in  get_flashed_messages(with_categories=true) %}
+<spam class="{{ category }}" style="color: red;">{{ message }}</spam>
+{% endfor %}
+<form action="" method="post">
+    <p>
+        <label for="title">Title: </label>
+        <input name="title" type="text" value="{{ notes.title }}" >
+    </p>
+    <p>
+        <label for="body">Note: </label>
+        <textarea name="body">{{ notes.body }}</textarea>
+    </p>
+    <p>
+        <input type="submit" value="Update">
+    </p>
+</form>
+<hr>
+{% endblock %}

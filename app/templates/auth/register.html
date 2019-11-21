@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block sidebar %}
+
+{% endblock %}
+
+{% block center %}
+<!-- login form -->
+<!-- login form -->
+<div class="">
+    <div class="container d-flex justify-content-center mt-3">
+        <div class="row">
+            <div class="card">
+                <div class="card-header">
+                    <strong>Login</strong>
+                </div>
+                <div class="card-body">
+                    <form name="login" method="POST" href="{ url_for('login') }">
+                        {{ form.hidden_tag() }}
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <i class='fas fa-user-shield'></i>
+                                            </span>
+                                        </div>
+                                        {{ form.username(class="form-control") }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <i class='fas fa-user-secret'></i>
+                                            </span>
+                                        </div>
+                                        {{ form.password(class="form-control") }}
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <i class='fas fa-user-secret'></i>
+                                            </span>
+                                        </div>
+                                        {{ form.password2(class="form-control") }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.submit(class="btn btn-info btn-success btn-block submit") }}
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Note -->
+{% for note in notes %}
+<div class="card mb-4 my-4">
+    <div class="card-body p-3">
+        {% for author in note.users[:1] %}
+        Author <a class="mr-3" href="#"><strong>{{ author.username }}</strong></a>
+        <small class="text-muted">{{ note.updated_on.strftime('%Y-%m-%d') }}</small>
+        {% if current_user == author %}
+        <div class="btn-vyrovnyat float-right">
+            <a class="btn btn-info btn-sm mt-1 mb-1" href="{{ url_for('update', id=note.id) }}">Update</a>
+            <a class="btn btn-dark btn-sm mt-1 mb-1" href="{{ url_for('delete', id=note.id) }}">Delete</a>
+        </div>
+        {% endif %}
+        {% if current_user in note.users[1:6] %}
+        <div class="btn-vyrovnyat float-right">
+            <a class="btn btn-info btn-sm mt-1 mb-1" href="{{ url_for('update', id=note.id) }}">Update</a>
+        </div>
+        {% endif %}
+        {% endfor %}
+        <hr>
+        <blockquote class="blockquote mb-0 ">
+            <h1>
+                <a class="link" href="#">{{ note.title }}</a>
+            </h1>
+            <p>{{ note.body }}</p>
+        </blockquote>
+        <hr>
+        {% for tag in note.tags %}
+        <div class="btn-group">
+            <a class="btn btn-dark" href="#" style="font-size: 12px">#{{ tag.name }}</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endfor %}
+
+{% if notes %}
+<!-- Pagination -->
+<ul class="pagination justify-content-center mb-4">
+    <ul class="pagination">
+        <li class="page-item"><a class="page-link color-info" href="#">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    </ul>
+</ul>
+{% endif %}
+
+{% endblock %}
+
+{% block tags %}
+{% if tags %}
+<div class="card my-4">
+    <h5 class="card-header"><i class="fa fa-tags"></i> Tags:</h5>
+    <div class="card-body">
+        <div class="row">
+            {% for tag in tags %}
+            <div class="col-lg-6">
+                <ul class="list-unstyled mb-1">
+                    <div class="btn-group">
+                        <a class="btn btn-dark" href="{{ url_for('get_note_by_tag', id=tag.id) }}" style="font-size: 11px">#{{ tag.name }}</a>
+                    </div>
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

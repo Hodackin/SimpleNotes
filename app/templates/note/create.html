@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card mb-4 my-4">
+    <div class="card-body">
+
+        <h2>{{ title }}</h2>
+        <hr>
+        <form method="post">
+            {{ form.hidden_tag() }}
+
+            <div class="form-group">
+                {{ form.title(class="form-control") }}
+            </div>
+
+            <div class="form-group">
+                {{ form.body(class="form-control") }}
+            </div>
+            <hr>
+            <div class="form-group">
+                {{ form.editors(class="form-control") }}
+            </div>
+            <hr>
+                {{ form.tags(class="btn btn-dark dropdown")}}{{ form.submit(class="btn btn-info float-right") }}
+        </form>
+    </div>
+</div>
+{% endblock %}
