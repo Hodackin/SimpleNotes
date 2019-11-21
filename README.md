@@ -1,6 +1,7 @@
 # SimpleNotes
 
 1.Clone the code into a fresh folder.
+
 2.Create a Virtual Environment and install Dependencies.
     
     $ virtualenv venv
