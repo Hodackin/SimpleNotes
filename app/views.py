@@ -1,8 +1,11 @@
 from app import app
-from flask import render_template, redirect, url_for, request, session, make_response, flash
+from flask import redirect
+from flask import url_for
+from flask import render_template
 from app.forms import *
 from app.models import *
-from flask_login import login_required, current_user
+from flask_login import login_required
+from flask_login import current_user
 
 
 @app.route('/')
@@ -23,6 +26,5 @@ def user_notes():
 def get_note_by_tag(id):
     tags = Tag.query.all()
     tag = Tag.query.filter_by(id=id).first()
-    # notes = Note.query.filter(Note.tags.id == id).all()
     return render_template('home.html', title='Home', notes=tag.notes, tags=tags)
 

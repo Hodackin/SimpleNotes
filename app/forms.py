@@ -1,6 +1,13 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField, SelectField
-from wtforms.validators import DataRequired, EqualTo, Length
+from wtforms import StringField
+from wtforms import PasswordField
+from wtforms import BooleanField
+from wtforms import SubmitField
+from wtforms import SelectField
+from wtforms import TextAreaField
+from wtforms.validators import DataRequired
+from wtforms.validators import EqualTo
+from wtforms.validators import Length
 
 
 class CreateTagForm(FlaskForm):
@@ -78,13 +85,3 @@ class CreateNoteForm(FlaskForm):
     submit = SubmitField('Create')
 
 
-class EditNoteForm(FlaskForm):
-    title = StringField('Title: ', validators=[DataRequired()])
-    body = TextAreaField(
-        'Note: ',
-        validators=[
-            DataRequired(),
-            Length(min=10, max=404)
-        ]
-    )
-    submit = SubmitField('Edit')

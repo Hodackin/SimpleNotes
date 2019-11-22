@@ -1,22 +1,30 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Update note</h1>
-{% for category, message in  get_flashed_messages(with_categories=true) %}
-<spam class="{{ category }}" style="color: red;">{{ message }}</spam>
-{% endfor %}
-<form action="" method="post">
-    <p>
-        <label for="title">Title: </label>
-        <input name="title" type="text" value="{{ notes.title }}" >
-    </p>
-    <p>
-        <label for="body">Note: </label>
-        <textarea name="body">{{ notes.body }}</textarea>
-    </p>
-    <p>
-        <input type="submit" value="Update">
-    </p>
-</form>
-<hr>
+<div class="card mb-4 my-4">
+    <div class="card-body">
+
+        <h2>Update</h2>
+        <hr>
+        <form method="post">
+            {{ form.hidden_tag() }}
+
+            <div class="form-group">
+                {{ form.title(class="form-control") }}
+            </div>
+
+            <div class="form-group">
+                {{ form.body(class="form-control") }}
+            </div>
+            {% if current_user == author %}
+            <hr>
+            <div class="form-group">
+                {{ form.editors(class="form-control")  }}
+            </div>
+            {% endif %}
+            <hr>
+             {{ form.submit(class="btn btn-info float-right") }}
+        </form>
+    </div>
+</div>
 {% endblock %}
